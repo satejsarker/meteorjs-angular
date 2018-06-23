@@ -23,21 +23,48 @@ class TodosListCtrl {
         this.helpers({
     
           tasks() {
+            const selector = {};
+            if (this.getReactively('hideCompleted')) {
+
+                selector.checked = {
+      
+                  $ne: true
+      
+                };
+      
+              }
     
-            return Tasks.find({},{
-                sort:{
-                    createdAt:-1
+              return Tasks.find(selector, {
+
+                sort: {
+      
+                  createdAt: -1
+      
                 }
-            }
-           
-            );
+            });
    
+          },
+          incompleteCount() {
+
+            return Tasks.find({
+    
+              checked: {
+    
+                $ne: true
+    
+              }
+    
+            }).count();
+    
           }
     
-        })
+        });      
 
         
   }
+  
+
+
 
   addTask(newTask) {
 
