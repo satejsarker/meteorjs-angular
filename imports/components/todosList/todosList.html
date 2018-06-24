@@ -26,7 +26,7 @@
   
   <ul>
   
-    <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked}">
+    <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked, 'private': task.private}">
 
         <button class="delete" ng-click="$ctrl.removeTask(task)">&times;</button>
     
@@ -41,6 +41,12 @@
           <strong>{{task.username}}</strong> - {{task.text}}
     
         </span>
+
+        <button class="toggle-private" ng-click="$ctrl.setPrivate(task)" ng-show="task.owner === $ctrl.currentUser._id">
+
+          {{task.private == true ? "Private" : "Public"}}
+    
+        </button>
     </li>
   
   </ul>

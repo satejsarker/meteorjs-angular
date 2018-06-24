@@ -15,6 +15,7 @@ class TodosListCtrl {
     constructor($scope) {
 
         $scope.viewModel(this);
+        this.subscribe('tasks');
          
 
     this.hideCompleted = false;
@@ -89,6 +90,11 @@ class TodosListCtrl {
     // Set the checked property to the opposite of its current value
 
     Meteor.call('tasks.setChecked', task._id, !task.checked);
+
+  }
+  setPrivate(task) {
+
+    Meteor.call('tasks.setPrivate', task._id, !task.private);
 
   }
 
